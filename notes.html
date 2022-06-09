@@ -57,7 +57,7 @@
         #note {
             width: 80%;
             height: 320px;
-            max-width: 320px;
+            /*max-width: 320px;*/
             margin-bottom: 20px;
         }
         /* TABLLE STYLES */
@@ -98,11 +98,26 @@
         #table-row-index {
             display: none;
         }
+        
+        /* ALREADY SET FOR PHONE*/
+        /* TABLET*/
+        @media only screen and (min-width : 600px) {
+			#main-notes{
+				width:600px;
+			}
+        }
+        /*DESKTOP*/
+        @media only screen and (min-width: 900px){
+			#main-notes{
+				width:900px;
+			}
+		}        
+        
     </style>
 </head>
 
 <body>
-    <main class="flex-column">
+    <main class="flex-column" id="main-notes">
         <h1>Notes</h1>
         <nav><button onclick="newEntry()">New</button><button onclick="load()">Load</button><button onclick="save()">Save</button><button id="copy" onclick="copyStringToClipboard(document.getElementById('note').value);">Copy</button></nav>
         <textarea id="note" rows="10" placeholder="your notes here"></textarea>
