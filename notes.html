@@ -152,6 +152,24 @@
             inputTypeIsFile.click();
         }
 
+        function copyStringToClipboard(str) {
+            //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
+            let el = document.createElement('textarea');
+            el.value = str;
+            el.setAttribute('readonly', '');
+            el.style = {
+                position: 'absolute',
+                left: '-9999px'
+            };
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('Copied to Clipboard.');
+        }
+
+		////////////////////////////////////////////
+		//Save related functions, often used with date functions below
         function save() {
             basename = "note" + getTodaysDate();
             saveStringToTextFile(note.value, basename, ".txt");
@@ -171,23 +189,6 @@
             downloadLink.click();
             downloadLink.parentElement.removeChild(downloadLink);
         }
-
-        function copyStringToClipboard(str) {
-            //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
-            let el = document.createElement('textarea');
-            el.value = str;
-            el.setAttribute('readonly', '');
-            el.style = {
-                position: 'absolute',
-                left: '-9999px'
-            };
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            alert('Copied to Clipboard.');
-        }
-
 
         //Date related functions for convience, uses same format as input type="date"
         function getTodaysDate() {
@@ -224,6 +225,8 @@
             thisYear = thisDate.getYear();
             return daysInSomeMonth(thisMonth, thisYear);
         }
+        
+        /////////////////////////////////////////////////
         ////Asks if you really want to close browser
 
         window.onbeforeunload = askConfirm;
