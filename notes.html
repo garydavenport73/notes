@@ -132,6 +132,7 @@
 			<button onclick="printDiv('note');">&#128424;</button>
 			<button onclick="changeFontSize(this);">-</button>
 			<button onclick="changeFontSize(this);">+</button>
+			<button onclick="simulateUndo()">&#10226;</button>
 		</nav>
         <textarea id="note" rows="10" placeholder="your notes here"></textarea>
     </main>
@@ -141,6 +142,8 @@
 		let noteFontSize = 2.5/3.0;
         let note = document.getElementById('note');
         note.style.fontSize = noteFontSize.toString() + "rem";
+        note.spellcheck=false;
+        note.focus();
         
         function changeFontSize(fontButton){
 			let doThis = fontButton.innerHTML;
@@ -298,6 +301,12 @@
                 return;
             }
         }
+        
+        function simulateUndo(){
+
+  document.execCommand('undo', false, null);
+
+			}
     </script>
 </body>
 
